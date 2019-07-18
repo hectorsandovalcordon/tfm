@@ -108,36 +108,36 @@
     }).addTo(map);
     var byn = L.tileLayer('http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map); //Creación de variables de las dos capas base de servicio wms procedentes de OSM
+    }); //Creación de variables de las dos capas base de servicio wms procedentes de OSM
 //Incorporación de los servicios WMS y WFS
-    var aparc_discapacitados = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+      var aparc_discapacitados = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
         layers: "aparc_discapacitados",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
-        }).addTo(map);      
+        });  
       var paradas_taxi = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
         layers: "paradas_taxi",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
-        }).addTo(map);
+        });
       var parquimetros = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
         layers: "parquimetros",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
-        }).addTo(map);
+        });
       var aparc_publico = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
         layers: "aparc_publico",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
-        }).addTo(map);
+        });
         var linbus = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
         layers: "linbus",//nombre de la capa (ver get capabilities)
         format: 'image/png',
@@ -151,19 +151,19 @@
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
-        }).addTo(map);
+        });
         var paradas_tranvia = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
         layers: "paradas_tranvia",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
-        }).addTo(map);
+        });
 
 //LLamada de las variables creadas al control de capas
     var baseLayers = {
-                "Mapa base OSM": osm,
-                "Mapa base B&N": byn,
+      "Open Street Maps (Color)": osm,
+      "Open Street Maps (B&N)": byn,
         };    
     
     var groupedOverlays = {
@@ -186,21 +186,5 @@
       var controlCapas = L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
       document.getElementById("control-capas").appendChild(controlCapas.getContainer()
     );
-    
-    //Insertar leyenda al mapa
-    var legend = L.control({position: 'bottomright'});
-    legend.onAdd = function (map) {
-    var link = L.DomUtil.create('a', 'legend');
-    link.href = 'control-leyenda';
-    L.DomEvent
-    .on(link, 'click', L.DomEvent.stopPropagation)
-    .on(link, 'click', L.DomEvent.preventDefault)
-    .on(link, 'click', function() {
-    sidebar.toggle();
-    })
-    link.innerHTML = 'Leyenda';;
-    return link;
-    };
-    legend.addTo(map);
     </script> 
 </html>
