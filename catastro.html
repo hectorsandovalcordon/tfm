@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-search@d4cbd36122efc8d17152b4177ed0e12165305441/dist/css/L.Control.OpenCageData.Search.min.css" />
     <link rel="stylesheet" href="css/catastro.css" />
     <link rel="stylesheet" href="css/leaflet.groupedlayercontrol.min.css" />
+    <link rel="stylesheet" href="css/leaflet-routing-machine.css" />
 
   </head>
   <!-- Cuerpo de la página web, donde se va a mostrar el contenido al usuario  -->
@@ -52,7 +53,7 @@
           <div class="sidebar-tabs">
               <ul role="tablist">
                   <li><a href="#home" role="tab"><i class="fa fa-map"></i></a></li>
-                  <li><a href="#leyenda" role="tab"><i class="fa fa-photo"></i></a></li>
+                  <li><a href="#leyenda" role="tab"><i class="fa fa-road"></i></a></li>
                   <li><a href="#info" role="tab"><i class="fa fa-info-circle"></i></a></li>
                 </ul>
   
@@ -67,8 +68,9 @@
               </div>
           </div>
           <div class="sidebar-pane" id="leyenda">
-              <h1 class="sidebar-header">Leyenda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-              <div class="" id="control-leyenda">
+              <h1 class="sidebar-header">Calculadora de rutas<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+              <div class="" id="control-rutas">
+                <br><h4>Itinerario</h4>
               </div>
           </div>
           <div class="sidebar-pane" id="info">
@@ -79,7 +81,9 @@
          
           <div class="sidebar-pane" id="settings">
               <h1 class="sidebar-header">Ajustes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-              </div>
+              <br><h4>Transparencia</h4>
+                <input id="slide" type="range" min="0" max="1" step="0.1" value="0" onchange="updateOpacity(this.value)">  
+            </div>
           </div>
         </div>
         <!-- Incorporación del mapa a la página web  -->
@@ -94,6 +98,7 @@
     <script src="js/bundle.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
     <script src="js/leaflet.groupedlayercontrol.min.js"></script>
+    <script src="js/leaflet-routing-machine.js"></script>
     <script type="text/javascript">
 //Creación de la variable mapa  
     var map = L.map ('mapid',{
@@ -108,7 +113,17 @@
     }).addTo(map);
     var byn = L.tileLayer('http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }); //Creación de variables de las dos capas base de servicio wms procedentes de OSM
+    });
+    
+    var controlRutas = L.Routing.control({
+    waypoints: [
+        L.latLng(41.65, -0.85),
+        L.latLng(41.65, -0.90)
+    ],
+    routeWhileDragging: true}).addTo(map);
+document.getElementById("control-rutas").appendChild(controlRutas.getContainer()
+    );
+    //Creación de variables de las dos capas base de servicio wms procedentes de OSM
 //Incorporación de los servicios WMS y WFS
       var aparc_discapacitados = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
         layers: "aparc_discapacitados",//nombre de la capa (ver get capabilities)
@@ -137,7 +152,7 @@
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
-        });
+        }).addTo(map);
         var linbus = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
         layers: "linbus",//nombre de la capa (ver get capabilities)
         format: 'image/png',
@@ -145,6 +160,10 @@
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
         }).addTo(map);
+      
+        function updateOpacity(value) {
+              linbus.setOpacity(value);
+        } 
         var paradas_bus = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
         layers: "paradas_bus",//nombre de la capa (ver get capabilities)
         format: 'image/png',
@@ -159,7 +178,6 @@
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
         });
-
 //LLamada de las variables creadas al control de capas
     var baseLayers = {
       "Open Street Maps (Color)": osm,
@@ -182,9 +200,11 @@
         "Parquímetros": parquimetros,
         "Para discapacitados": aparc_discapacitados,
       },
-        }; //Incorporación de los GeoJSON tranvía y aparcabicis en formato JS a las capas de supersposición (Overlay)
+        };
+    //Incorporación de los GeoJSON tranvía y aparcabicis en formato JS a las capas de supersposición (Overlay)
       var controlCapas = L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
       document.getElementById("control-capas").appendChild(controlCapas.getContainer()
     );
+
     </script> 
 </html>
