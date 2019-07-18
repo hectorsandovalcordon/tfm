@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!-- Etiqueta que define la raíz del documento -->
+<html>
+  <!-- Etiqueta que define el título, metadatos y diversos enlaces -->
+  <head>
+    <!-- Titulo que aparece en la pestaña de la página web -->
+    <title>Visor Cartográfico</title>
+
+    <!-- Metadatos de la página -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Demo project with jQuery">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Enlaces a librerías, hojas de estilo y plugins de leaflet  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/leaflet-sidebar.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-search@d4cbd36122efc8d17152b4177ed0e12165305441/dist/css/L.Control.OpenCageData.Search.min.css" />
+    <link rel="stylesheet" href="css/catastro.css" />
+
+  </head>
+  <!-- Cuerpo de la página web, donde se va a mostrar el contenido al usuario  -->
+  <body>  
+    <!-- Barra de navegación superior de la página web con diferentes opciones para interactuar con otros html  -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Visor Cartográfico</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Inicio</a></li>
+                <li><a class="dropdown-item" href="index.html">Página principal</a></li>
+                <li><a class="dropdown-item" href="transporte.html" target="blank">Visor Autobuses urbanos</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Barra de navegación situada en la parte izquierda del visor para interactuar con las capas, leyenda, etc.  -->
+    <div id="container" class="container-fluid">
+        <div id="sidebar" class="sidebar collapsed">
+          <div class="sidebar-tabs">
+              <ul role="tablist">
+                  <li><a href="#home" role="tab"><i class="fa fa-map"></i></a></li>
+                  <li><a href="#leyenda" role="tab"><i class="fa fa-photo"></i></a></li>
+                  <li><a href="#info" role="tab"><i class="fa fa-info-circle"></i></a></li>
+                </ul>
+  
+              <ul role="tablist">
+                  <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+              </ul>
+          </div>
+          <div class="sidebar-content">
+          <div class="sidebar-pane" id="home">
+              <h1 class="sidebar-header">Capas<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+              <div class="" id="control-capas">
+              </div>
+          </div>
+          <div class="sidebar-pane" id="leyenda">
+              <h1 class="sidebar-header">Leyenda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+              <div class="" id="control-leyenda">
+              </div>
+          </div>
+          <div class="sidebar-pane" id="info">
+            <h1 class="sidebar-header">Información<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            <br>
+            <p>En el siguiente visor cartográfico se presentan diferentes cartografías. En el apartado de Capas, podemos encontrar diferentes mapas base y, otros mapas GeoJson para superponer y poder analizar la información del municipio de Zaragoza. Los datos han sido recogidos del catálogo de Datos abiertos de Zaragoza, así como en el caso de la cartografía base, de OpenStreetMaps.</p>  
+          </div>
+         
+          <div class="sidebar-pane" id="settings">
+              <h1 class="sidebar-header">Ajustes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+              </div>
+          </div>
+        </div>
+        <!-- Incorporación del mapa a la página web  -->
+        <div id="mapid"></div>
+  </body>
+    <!-- Diferentes scripts javascript de la página web bootstrap, leaflet, etc.  -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="js/leaflet-sidebar.min.js"></script>
+    <script src="js/l.control.geosearch,js"></script>
+    <script src="js/l.geosearch.provider.openstreetmap.js"></script>
+    <script src="js/tranvia.js"></script>
+    <script src="js/aparcabicis.js"></script>
+    <script src="js/bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
+    <script type="text/javascript">
+//Creación de la variable mapa  
+    var map = L.map ('mapid',{
+      center:[41.65, -0.85],
+      zoom: 13 
+    }) 
+//Creación del sidebar control
+    var sidebar = L.control.sidebar('sidebar').addTo(map); //Creación de la variable sidebar (barra de interacción de la parte izquierda)
+//Creación de las imágenes de referencia de OSM
+    var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    var byn = L.tileLayer('http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map); //Creación de variables de las dos capas base de servicio wms procedentes de OSM
+//Incorporación de los servicios WMS
+    var aparc_discapacitados = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+        layers: "aparc_discapacitados",//nombre de la capa (ver get capabilities)
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.0',//wms version (ver get capabilities)
+        attribution: "Geoserver WMS."
+        }).addTo(map);
+      var paradas_taxi = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+        layers: "paradas_taxi",//nombre de la capa (ver get capabilities)
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.0',//wms version (ver get capabilities)
+        attribution: "Geoserver WMS."
+        }).addTo(map);
+      var parquimetros = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+        layers: "parquimetros",//nombre de la capa (ver get capabilities)
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.0',//wms version (ver get capabilities)
+        attribution: "Geoserver WMS."
+        }).addTo(map);
+      var aparc_publico = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+        layers: "aparc_publico",//nombre de la capa (ver get capabilities)
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.0',//wms version (ver get capabilities)
+        attribution: "Geoserver WMS."
+        }).addTo(map);
+        var linbus = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+        layers: "linbus",//nombre de la capa (ver get capabilities)
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.0',//wms version (ver get capabilities)
+        attribution: "Geoserver WMS."
+        }).addTo(map);
+        var paradas_bus = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+        layers: "paradas_bus",//nombre de la capa (ver get capabilities)
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.0',//wms version (ver get capabilities)
+        attribution: "Geoserver WMS."
+        }).addTo(map);
+        var paradas_tranvia = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+        layers: "paradas_tranvia",//nombre de la capa (ver get capabilities)
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.0',//wms version (ver get capabilities)
+        attribution: "Geoserver WMS."
+        }).addTo(map);
+//Incorporación de lose servicios WFS
+
+//LLamada de las variables creadas al control de capas
+    var baseMaps = {
+                "Mapa base OSM": osm,
+                "Mapa base B&N": byn,
+        };    
+    
+    var Overlay = {
+                "Lineas de autobús": linbus,
+                "Paradas de autobús": paradas_bus,
+                "Paradas de tranvía": paradas_tranvia,
+                "Paradas de taxi": paradas_taxi,
+                "Aparcamientos para discapacitados": aparc_discapacitados,
+                "Aparcamientos públicos": aparc_publico,
+                "Parquimetros": parquimetros,
+        }; //Incorporación de los GeoJSON tranvía y aparcabicis en formato JS a las capas de supersposición (Overlay)
+    var controlCapas = L.control.layers(baseMaps, Overlay).addTo(map);//Creación de variables control de capas para establecer cuáles van a ser capas base (WMS) y cuales de superposición (GeoJSON)
+    document.getElementById("control-capas").appendChild(controlCapas.getContainer()
+    ); //Introducción de la variable controlcapas al elemento del sidebar denominado control-capas
+    
+    //Insertar leyenda al mapa
+    var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (map) {
+    var link = L.DomUtil.create('a', 'legend');
+    link.href = 'control-leyenda';
+    L.DomEvent
+    .on(link, 'click', L.DomEvent.stopPropagation)
+    .on(link, 'click', L.DomEvent.preventDefault)
+    .on(link, 'click', function() {
+    sidebar.toggle();
+    })
+    link.innerHTML = 'Leyenda';;
+    return link;
+    };
+    legend.addTo(map);
+    </script> 
+</html>
