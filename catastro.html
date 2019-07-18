@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="css/catastro.css" />
     <link rel="stylesheet" href="css/leaflet.groupedlayercontrol.min.css" />
     <link rel="stylesheet" href="css/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="css/Control.FullScreen.css" />
+    <link rel="stylesheet" href="css/Control.Coordinates.css" />
 
   </head>
   <!-- Cuerpo de la página web, donde se va a mostrar el contenido al usuario  -->
@@ -99,12 +101,27 @@
     <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
     <script src="js/leaflet.groupedlayercontrol.min.js"></script>
     <script src="js/leaflet-routing-machine.js"></script>
+    <script src="js/Control.FullScreen.js"></script>
+    <script src="js/Control.Coordinates.js"></script>
     <script type="text/javascript">
 //Creación de la variable mapa  
     var map = L.map ('mapid',{
       center:[41.65, -0.85],
-      zoom: 13 
-    }) 
+      zoom: 13,
+      fullscreenControl: true,
+			fullscreenControlOptions: { // optional
+				title:"Mostrar pantalla completa",
+				titleCancel:"Salir del modo pantalla completa"
+			}
+		});
+
+    map.on('enterFullscreen', function(){
+			if(window.console) window.console.log('enterFullscreen');
+		});
+		map.on('exitFullscreen', function(){
+			if(window.console) window.console.log('exitFullscreen');
+    });
+    
 //Creación del sidebar control
     var sidebar = L.control.sidebar('sidebar').addTo(map); //Creación de la variable sidebar (barra de interacción de la parte izquierda)
 //Creación de las imágenes de referencia de OSM
@@ -206,5 +223,11 @@ document.getElementById("control-rutas").appendChild(controlRutas.getContainer()
       document.getElementById("control-capas").appendChild(controlCapas.getContainer()
     );
 
+    var c = new L.Control.Coordinates();
+    c.addTo(map);
+
+    map.on('click', function(e) {
+      c.setCoordinates(e);
+    });
     </script> 
 </html>
