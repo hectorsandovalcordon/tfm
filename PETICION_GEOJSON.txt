@@ -1,0 +1,23 @@
+ajax = $.ajax({
+                url: "http://localhost:8080/geoserver/tfm/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tfm%3Aaparc_discapacitados&maxFeatures=50&outputFormat=application%2Fjson",
+                dataType: 'jsonp', 
+                async: false,
+                //jsonpCallback: 'getJson',
+                success: function (response) {
+                    discWFS = L.geoJson(response, {
+                        style: function (feature) {
+                            return {
+                                stroke: false,
+                                fillColor: 'FFFFFF',
+                                fillOpacity: 0
+                            };
+                        },
+                        onEachFeature: function (feature, layer) {
+                            popupOptions = { maxWidth: 200 };
+                            layer.bindPopup("Popup text, access attributes with ParcelID:" + feature.properties.P_id + "</br>"
+                                , popupOptions);
+                        }
+                    })
+                aparc_discapacitados = L.layerGroup([discWMS,discWFS]);
+                }
+            });
