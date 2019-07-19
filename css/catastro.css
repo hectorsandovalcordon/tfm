@@ -58,3 +58,6 @@ opacity: .8;
     text-decoration: none;
     -webkit-transition-duration: 0.2s;
     }
+p {
+    text-justify: auto;
+}
