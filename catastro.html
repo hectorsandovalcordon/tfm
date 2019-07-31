@@ -73,7 +73,8 @@
           </div>
           <div class="sidebar-pane" id="leyenda">
               <h1 class="sidebar-header">Leyenda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-              <div class="" id="control-capas">
+              <div class="" id="control-leyenda">
+              <br>
               </div>
           </div>
           <div class="sidebar-pane" id="rutas">
@@ -155,17 +156,23 @@
 		map.on('exitFullscreen', function(){
 			if(window.console) window.console.log('exitFullscreen');
     });
+
+    map.on('click', function(e) {
+      c.setCoordinates(e);
+    });
+
     
 //Creación del sidebar control
     var sidebar = L.control.sidebar('sidebar').addTo(map); //Creación de la variable sidebar (barra de interacción de la parte izquierda)
 //Creación de las imágenes de referencia de OSM
-    var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+
+var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
     var byn = L.tileLayer('http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     });
-    
+
     var controlRutas = L.Routing.control({
     waypoints: [
         L.latLng(41.6476, -0.9133),
@@ -173,40 +180,41 @@
     ],
     routeWhileDragging: true,
     }).addTo(map);
-document.getElementById("control-rutas").appendChild(controlRutas.getContainer()
+    document.getElementById("control-rutas").appendChild(controlRutas.getContainer()
     );
+
     //Creación de variables de las dos capas base de servicio wms procedentes de OSM
 //Incorporación de los servicios WMS y WFS
-      var aparc_discapacitados = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+      var aparc_discapacitados = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
         layers: "aparc_discapacitados",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
         });  
-      var paradas_taxi = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+      var paradas_taxi = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
         layers: "paradas_taxi",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
         });
-      var parquimetros = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+      var parquimetros = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
         layers: "parquimetros",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
         });
-      var aparc_publico = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+      var aparc_publico = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
         layers: "aparc_publico",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
         });
-        var linbus = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
-        layers: "linbus",//nombre de la capa (ver get capabilities)
+        var linbus = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
+        layers: "lineas_autobus",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
@@ -223,13 +231,14 @@ document.getElementById("control-rutas").appendChild(controlRutas.getContainer()
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
         });
-        var paradas_tranvia = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+        var paradas_tranvia = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
         layers: "paradas_tranvia",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
         });
+
 //LLamada de las variables creadas al control de capas
     var baseLayers = {
       "Open Street Maps (Color)": osm,
@@ -253,16 +262,15 @@ document.getElementById("control-rutas").appendChild(controlRutas.getContainer()
         "Para discapacitados": aparc_discapacitados,
       },
         };
+
     //Incorporación de los GeoJSON tranvía y aparcabicis en formato JS a las capas de supersposición (Overlay)
       var controlCapas = L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
       document.getElementById("control-capas").appendChild(controlCapas.getContainer()
     );
 
+    //Condenadas del mapa    
     var c = new L.Control.Coordinates();
     c.addTo(map);
 
-    map.on('click', function(e) {
-      c.setCoordinates(e);
-    });
     </script> 
 </html>
