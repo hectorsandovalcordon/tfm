@@ -16,7 +16,8 @@
         <!-- Enlaces a librerías, hojas de estilo y plugins de leaflet  -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="css/leaflet.css">
-        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-search.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         
@@ -163,12 +164,11 @@
         .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Buscador callejero';
-        map.addControl(new L.Control.Search({
+        var control = new L.Control.Search({
             layer: layer_postes_urbanos_0,
             initial: false,
             hideMarkerOnCollapse: true,
             propertyName: 'id'}));
-        document.getElementsByClassName('search-button')[0].className +=
-         ' fa fa-binoculars'; //Incorporación de los diferentes buscadores de postes, callejeros...
+        document.getElementsByClassName('search-button')[0].className += ' fa fa-bus'; 
         </script>
 </html>

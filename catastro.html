@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="css/Control.FullScreen.css" />
     <link rel="stylesheet" href="css/Control.Coordinates.css" />
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/leaflet-search.css" />
+    <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css" />
+    <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="css/L.Control.Locate.min.css" />
 
   </head>
   <!-- Cuerpo de la página web, donde se va a mostrar el contenido al usuario  -->
@@ -146,44 +150,50 @@
     <script src="js/Control.Geocoder.js"></script>
     <script src="js/config.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+    <script src="js/leaflet-search.js"></script>
+    <script src="js/L.Control.Locate.min.js"></script>
     <script type="text/javascript">
-    var highlightLayer;
-        function highlightFeature(e) {
-            highlightLayer = e.target;
-            if (e.target.feature.geometry.type === 'LineString') {
-              highlightLayer.setStyle({
-                color: '#EFEB11',
-              });
-            } else {
-              highlightLayer.setStyle({
-                fillColor: '#EFEB11',
-                fillOpacity: 0
-              });
+        var highlightLayer;
+            function highlightFeature(e) {
+                highlightLayer = e.target;
+                if (e.target.feature.geometry.type === 'LineString') {
+                highlightLayer.setStyle({
+                    color: '#EFEB11',
+                });
+                } else {
+                highlightLayer.setStyle({
+                    fillColor: '#EFEB11',
+                    fillOpacity: 0.4
+                });
+                }
             }
-        }
 
-    var map = L.map ('mapid',{
-      center:[41.65, -0.85],
-      zoom: 13 
-    }) 
+        var map = L.map ('mapid',{
+        center:[41.65, -0.85],
+        zoom: 13,
+        fullscreenControl: true,
+                fullscreenControlOptions: { // optional
+                    title:"Mostrar pantalla completa",
+                    titleCancel:"Salir del modo pantalla completa"
+                }
+            });
 
-    map.on('enterFullscreen', function(){
-            if(window.console) window.console.log('enterFullscreen');
+        map.on('enterFullscreen', function(){
+                if(window.console) window.console.log('enterFullscreen');
+            });
+            map.on('exitFullscreen', function(){
+                if(window.console) window.console.log('exitFullscreen');
         });
-        map.on('exitFullscreen', function(){
-            if(window.console) window.console.log('exitFullscreen');
-    });
-    map.on('click', function(e) {
-        c.setCoordinates(e);
-        });
-        
+        map.on('click', function(e) {
+            c.setCoordinates(e);
+            });
+
     var sidebar = L.control.sidebar('sidebar').addTo(map); 
-    var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    var carto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a>Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a> contributors'
     }).addTo(map);
-    var byn = L.tileLayer('http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }); //Creación de variables de las dos capas base de servicio wms procedentes de OSM
+
 
     var controlRutas = L.Routing.control({
         waypoints: [
@@ -571,7 +581,7 @@
                 fillOpacity: 0,
                 fillColor: '#2986D4',
             }
-        } //Estilo de cada uno de los popups de las paradas
+        } 
         map.createPane('pane_aparc_publico');
         map.getPane('pane_aparc_publico').style.zIndex = 400;
         map.getPane('pane_aparc_publico').style['mix-blend-mode'] = 'normal';
@@ -590,9 +600,8 @@
         var aparc_public=L.layerGroup([aparc_publico,layer_aparc_publico]);
 
         var baseMaps = {
-                "Mapa base OSM": osm,
-                "Mapa base B&N": byn,
-        };    
+                "Mapa base Carto": carto,
+        };
     
         var groupedOverlays = {
         "Autobuses": {
@@ -616,9 +625,36 @@
         var controlCapas = L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
         document.getElementById("control-capas").appendChild(controlCapas.getContainer()
         ); //Introducción de la variable controlcapas al elemento del sidebar denominado control-capas
-
       
         var c = new L.Control.Coordinates();
-    c.addTo(map);
+        c.addTo(map);
+
+        var osmGeocoder = new L.Control.Geocoder({
+                collapsed: true,
+                position: 'topleft',
+                text: 'Search',
+                title: 'Testing'
+            }).addTo(map);
+            document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+            .className += ' fa fa-search';
+            document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+            .title += 'Buscador callejero';
+
+            var lc = L.control.locate({
+            strings: {
+                title: "Localización actual"
+            }
+        }).addTo(map);
+        
+        var legend = L.control({position: 'bottomright'});
+ 
+        legend.onAdd = function (map) {
+        
+        var div = L.DomUtil.create('div', 'info legend');
+        
+        div.innerHTML +=
+        '<img alt="legend" src="http://104.199.101.9:8079/geoserver/VISOR2DH/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:aparc_discapacitados" width="127" height="120" />'; 
+        }; 
+        legend.addTo(map);
     </script> 
 </html>
