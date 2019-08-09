@@ -194,7 +194,6 @@
       attribution: '&copy; <a>Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a> contributors'
     }).addTo(map);
 
-
     var controlRutas = L.Routing.control({
         waypoints: [
             L.latLng(41.6476, -0.9133),
@@ -213,7 +212,7 @@
         attribution: "Geoserver WMS."
         });
 
-        var paradas_bus = L.tileLayer.wms("http://localhost:8080/geoserver/tfm/wms", {
+        var paradas_bus = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
         layers: "paradas_bus",//nombre de la capa (ver get capabilities)
         format: 'image/png',
         transparent: true,
