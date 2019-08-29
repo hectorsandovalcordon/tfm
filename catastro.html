@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- Etiqueta que define la raíz del documento -->
+
 <html>
-  <!-- Etiqueta que define el título, metadatos y diversos enlaces -->
+
   <head>
     <!-- Titulo que aparece en la pestaña de la página web -->
     <title>Visor Cartográfico</title>
@@ -33,7 +33,7 @@
   </head>
   <!-- Cuerpo de la página web, donde se va a mostrar el contenido al usuario  -->
   <body>  
-    <!-- Barra de navegación superior de la página web con diferentes opciones para interactuar con otros html  -->
+    <!-- Barra de navegación superior  -->
     <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #FFFFFF;">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -48,7 +48,7 @@
             </div>
           </div>
       </nav>
-    <!-- Barra de navegación situada en la parte izquierda del visor para interactuar con las capas, leyenda, etc.  -->
+    <!-- Barra de herramientas situada en la parte izquierda  -->
     <div id="container" class="container-fluid">
         <div id="sidebar" class="sidebar collapsed">
           <div class="sidebar-tabs" style="background-color: #FFFFFF;">
@@ -68,13 +68,8 @@
           <div class="sidebar-pane" id="home">
               <h1 class="sidebar-header">Capas<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <div class="" id="control-capas">
-                  <br>
-                    <audio id="demo" src="audio/capas.m4a"></audio>
-                    <div>
-                      <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').play()">Reproducir explicación</button>
-                      <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').pause()">Pausar explicación</button>
-                    </div>
-                    <br>
+            <br>
+
             </div>
           </div>
           <div class="sidebar-pane" id="leyenda">
@@ -125,17 +120,34 @@
             <h1 class="sidebar-header">Información y uso del visor<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
             <br>
             <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                  <li><a class="dropdown-item" href="#">Introducción</a></li>
-                  <li><a class="dropdown-item" href="#">Cómo funciona</a></li>
-                  <li><a class="dropdown-item" href="#">Datos</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            <br>
-            <p>El siguiente visor cartográfico ha sido realizado por Héctor Sandoval como <b>proyecto final de máster de Tecnologías de la información: Teledetección y Sistemas de Información geográfica de la Universidad de Zaragoza</b>. <p></p>Tiene como objetivo, facilitar la accesibilidad de la población en la ciudad de Zaragoza con la interacción de una serie de capas y herramientas de transporte o enrutamiento. </p> <p>Para llevar a cabo el visor, en primer lugar se adquirió la información del <b>Catálogo de datos abiertos del ayuntamiento de Zaragoza</b>, posteriormente se incorporaron dichos datos en una base de datos mediante PostgreSQL. Una vez llevado a cabo dicho proceso, se convirtieron los datos en información mediante su visualización en geoserver, servidor a partir del cual se dió estilo a los diferentes servicios WMS y, finalmente se llevó a cabo la programación del visor así como la incorporación de los servicios WMS y WFS en el mismo.</p> 
-          </div>
+                    <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#intro">Introducción</a></li>
+                            <li><a data-toggle="tab" href="#funcionamiento">Funcionamiento</a></li>
+                            <li><a data-toggle="tab" href="#datos">Datos</a></li>
+                          </ul>
+                          
+                          <div class="tab-content">
+                            <div id="intro" class="tab-pane fade in active">
+                            <br>
+                            <p>El siguiente visor cartográfico ha sido realizado por Héctor Sandoval como <b>proyecto final de máster de Tecnologías de la información: Teledetección y Sistemas de Información geográfica de la Universidad de Zaragoza</b>.</p><p>Tiene como objetivo, facilitar la accesibilidad de la población en la ciudad de Zaragoza con la interacción de una serie de capas y herramientas de transporte o enrutamiento. </p><p>Para llevar a cabo el visor, en primer lugar se adquirió la información del<b> Catálogo de datos abiertos del ayuntamiento de Zaragoza</b>, posteriormente se incorporaron dichos datos en una base de datos mediante PostgreSQL. Una vez llevado a cabo dicho proceso, se convirtieron los datos en información mediante su visualización en geoserver, servidor a partir del cual se dió estilo a los diferentes servicios WMS y, finalmente se llevó a cabo la programación del visor así como la incorporación de los servicios WMS y WFS en el mismo.</p>
+                            </div>
+                            <div id="funcionamiento" class="tab-pane fade">
+                                <br>
+                              <p>A continuación se expone un audio y un video explicando el funcionamiento del visor cartográfico.</p>
+                              <br>
+                              <audio id="demo" src="audio/capas.m4a"></audio>
+                              <div>
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').play()">Reproducir explicación</button>
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').pause()">Pausar explicación</button>
+                              </div>
+                            </div>
+                            <div id="datos" class="tab-pane fade">
+                                <br>
+                              <p>En cuanto a la adquisición de los datos geográficos, han sido obtenidos del <b> Catálogo de datos abiertos del ayuntamiento de Zaragoza</b>.</p>
+                            </div>
+                          </div>
+                </div>
+                  </div>
           <div class="sidebar-pane" id="contacto">
               <h1 class="sidebar-header">Contacto<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <br>
@@ -752,5 +764,6 @@
         ).addTo(map);
         document.getElementById("settings").appendChild(opacity.getContainer()
         );
+
     </script> 
 </html>
