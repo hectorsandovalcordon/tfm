@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css" />
     <link rel="stylesheet" href="css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="css/L.Control.Locate.min.css" />
+    <link rel="stylesheet" href="css/L.Control.Opacity.css" />
 
   </head>
   <!-- Cuerpo de la página web, donde se va a mostrar el contenido al usuario  -->
@@ -70,8 +71,8 @@
                   <br>
                     <audio id="demo" src="audio/capas.m4a"></audio>
                     <div>
-                      <button onclick="document.getElementById('demo').play()">Reproducir explicación</button>
-                      <button onclick="document.getElementById('demo').pause()">Pausar explicación</button>
+                      <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').play()">Reproducir explicación</button>
+                      <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').pause()">Pausar explicación</button>
                     </div>
                     <br>
             </div>
@@ -79,13 +80,42 @@
           <div class="sidebar-pane" id="leyenda">
               <h1 class="sidebar-header">Leyenda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <div class="" id="control-leyenda">
-
-              </div>
+                <br>
+                <p>Líneas autobús</p>
+                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:lineas_autobus&SCALE=1">
+               <br>
+               <br>
+               <p>Paradas autobús</p>
+                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_bus">
+                <br>
+               <br>
+               <p>Línea tranvía</p>
+                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:lineas_tranvia&SCALE=1">
+                <br>
+               <br>
+               <p>Paradas tranvía</p>
+                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_tranvia">
+                <br>
+               <br>
+               <p>Paradas taxi</p>
+                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_taxi">
+                <br>
+               <br>
+               <p>Parkings públicos</p>
+                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:aparc_publico">
+                <br>
+               <br>
+               <p>Parquímetros</p>
+                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:parquimetros">
+                <br>
+                <br>
+                <p>Parkings para discapacitados</p>
+                 <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:aparc_discapacitados">
+                 </div>
           </div>
           <div class="sidebar-pane" id="rutas">
               <h1 class="sidebar-header">Calculadora de rutas<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <div class="" id="control-rutas">
-                    <br>
                 <br><h4>¿Cómo funciona?</h4>
                 <p>En el visor se pueden observar dos popups o marcadores de color azul los cuales se corresponden con las localizaciondes de inicio y final de la ruta. Una vez colocadas donde queramos, abriremos la ventana emergente de Calculadora de rutas (donde nos encontramos ahora mismo) y, en la parte inferior podremos ver el itinerario completo de la ruta más óptima, además de los kilómetros y tiempo aproximado de realización.</p>
                 <br><h4>Itinerario</h4>
@@ -112,7 +142,7 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav" text-align=center>
                   <h4>Correo electrónico</h4><li><a class="dropdown-item" href="mailto:hectorsandovalcordon@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
-                  <br><br><br><h4>LinkedIn</h4><li><a class="dropdown-item" href="https://www.linkedin.com/in/hectorsandovalcordon/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                  <br><br><br><h4>LinkedIn</h4><li><a class="dropdown-item" href="https://www.linkedin.com/in/hectorsandovalcordon/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
                   <br><br><br><h4>Web personal</h4><li><a class="dropdown-item" href="https://hectorsandovalcordon.github.io/tfm/" target="_blank"><i class="fa fa-copy"></i></a></li>
                     </ul>
                   </li>
@@ -122,7 +152,6 @@
           <div class="sidebar-pane" id="settings">
               <h1 class="sidebar-header">Ajustes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <br><h4>Transparencia</h4>
-                <input id="slide" type="range" min="0" max="1" step="0.1" value="0" onchange="updateOpacity(this.value)">  
             </div>
           </div>
         </div>
@@ -150,11 +179,14 @@
     <script src="js/Control.FullScreen.js"></script>
     <script src="js/leaflet-routing-machine.js"></script>
     <script src="js/Control.Geocoder.js"></script>
+    <script src="js/waypoint.js"></script>
+    <script src="js/formatter.js"></script>
     <script src="js/config.js"></script>
     <script src="js/index.js"></script>
     <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
     <script src="js/leaflet-search.js"></script>
     <script src="js/L.Control.Locate.min.js"></script>
+    <script src="js/L.Control.Opacity.js"></script>
     <script type="text/javascript">
         var highlightLayer;
             function highlightFeature(e) {
@@ -199,10 +231,40 @@
                 removeLeyenda(layer.layer);
         });
 
+
     var sidebar = L.control.sidebar('sidebar').addTo(map); 
     var carto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
       attribution: '&copy; <a>Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a> contributors'
     }).addTo(map);
+
+    function createButton(label, container) {
+            var btn = L.DomUtil.create('button', '', container);
+            btn.setAttribute('type', 'button',);
+            btn.innerHTML = label;
+            return btn;
+        }
+
+        map.on('click', function(e) {
+            var container = L.DomUtil.create('div'),
+                startBtn = createButton('Empezar ruta desde esta ubicación', container),
+                destBtn = createButton('Ir a esta ubicación', container);
+
+                L.DomEvent.on(startBtn, 'click', function() {
+        control.spliceWaypoints(0, 1, e.latlng);
+        map1.closePopup();
+         });
+
+         L.DomEvent.on(destBtn, 'click', function() {
+        control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng);
+        map1.closePopup();
+         });
+
+
+            L.popup()
+                .setContent(container)
+                .setLatLng(e.latlng)
+                .openOn(map);
+        });
 
     var controlRutas = L.Routing.control({
         waypoints: [
@@ -210,6 +272,7 @@
             L.latLng(41.6477, -0.8969)
         ],
         routeWhileDragging: true,
+        geocoder: L.Control.Geocoder.nominatim()
         }).addTo(map);
         document.getElementById("control-rutas").appendChild(controlRutas.getContainer()
         );
@@ -682,5 +745,12 @@
             }
         }).addTo(map);
         
+        var opacity= L.control.opacity(
+            groupedOverlays,
+            {
+            }
+        ).addTo(map);
+        document.getElementById("settings").appendChild(opacity.getContainer()
+        );
     </script> 
 </html>
