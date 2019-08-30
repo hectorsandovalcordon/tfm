@@ -69,8 +69,8 @@
               <div class="" id="control-capas">
             <br>
             <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#1">Estilos Generales</a></li>
-                    <li><a data-toggle="tab" href="#2">Estilos Adaptados</a></li>
+                    <li class="active"><a data-toggle="tab" href="#1">Capas Generales</a></li>
+                    <li><a data-toggle="tab" href="#2">Capas Adaptadas</a></li>
                   </ul>
                   
                   <div class="tab-content">
@@ -90,8 +90,8 @@
               <div class="" id="control-leyenda">
                 <br>
                 <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#estgen">Estilos Generales</a></li>
-                        <li><a data-toggle="tab" href="#estadap">Estilos Adaptados</a></li>
+                        <li class="active"><a data-toggle="tab" href="#estgen">Leyenda General</a></li>
+                        <li><a data-toggle="tab" href="#estadap">Leyenda Adaptada</a></li>
                       </ul>
                       
                       <div class="tab-content">
@@ -101,41 +101,67 @@
                         <img src=" http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=lineas_autobus_gen&SCALE=1">
                         <br>
                         <br>
+                        <p>Paradas autobús</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_bus">
+                        <br>
+                        <br>
+                        <p>Línea tranvía</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:linea_tranvia_gen&SCALE=1">
+                        <br>
+                        <br>
+                        <p>Paradas tranvía</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_tranvia">
+                        <br>
+                        <br>
+                        <p>Paradas taxi</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_taxi">
+                        <br>
+                        <br>
+                        <p>Parkings públicos</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:aparc_publico">
+                        <br>
+                        <br>
+                        <p>Parquímetros</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:parquimetros">
+                        <br>
+                        <br>
+                        <p>Parkings para discapacitados</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:aparc_discapacitados">
                         </div>
                         <div id="estadap" class="tab-pane fade">
-                            <br>
-                            <p>Líneas autobús</p>
-                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:lineas_autobus&SCALE=1">
-               <br>
-               <br>
-               <p>Paradas autobús</p>
-                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_bus">
-                <br>
-               <br>
-               <p>Línea tranvía</p>
-                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:lineas_tranvia&SCALE=1">
-                <br>
-               <br>
-               <p>Paradas tranvía</p>
-                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_tranvia">
-                <br>
-               <br>
-               <p>Paradas taxi</p>
-                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_taxi">
-                <br>
-               <br>
-               <p>Parkings públicos</p>
-                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:aparc_publico">
-                <br>
-               <br>
-               <p>Parquímetros</p>
-                <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:parquimetros">
-                <br>
-                <br>
-                <p>Parkings para discapacitados</p>
-                 <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:aparc_discapacitados">
-                 </div>
-                 </div>
+                        <br>
+                        <p>Líneas autobús</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:lineas_autobus&SCALE=1">
+                        <br>
+                        <br>
+                        <p>Paradas autobús</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_bus">
+                        <br>
+                        <br>
+                        <p>Línea tranvía</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:lineas_tranvia&SCALE=1">
+                        <br>
+                        <br>
+                        <p>Paradas tranvía</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_tranvia">
+                        <br>
+                        <br>
+                        <p>Paradas taxi</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:paradas_taxi">
+                        <br>
+                        <br>
+                        <p>Parkings públicos</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:aparc_publico">
+                        <br>
+                        <br>
+                        <p>Parquímetros</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:parquimetros">
+                        <br>
+                        <br>
+                        <p>Parkings para discapacitados</p>
+                        <img src="http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:aparc_discapacitados">
+                        </div>
+                        </div>
                         </div>
                 
           </div>
@@ -163,18 +189,15 @@
             <h1 class="sidebar-header">Información y uso del visor<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
             <br>
             <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#intro">Introducción</a></li>
-                            <li><a data-toggle="tab" href="#funcionamiento">Funcionamiento</a></li>
-                            <li><a data-toggle="tab" href="#datos">Datos</a></li>
-                          </ul>
+                    <button data-toggle="collapse" data-target="#intro">Introducción</button>
+                    <button data-toggle="collapse" data-target="#funcionamiento">Funcionamiento</button>
+                    <button data-toggle="collapse" data-target="#datos">Datos</button>
                           
-                          <div class="tab-content">
-                            <div id="intro" class="tab-pane fade in active">
+                            <div id="intro" class="collapse">
                             <br>
                             <p>El siguiente visor cartográfico ha sido realizado por Héctor Sandoval como <b>proyecto final de máster de Tecnologías de la información: Teledetección y Sistemas de Información geográfica de la Universidad de Zaragoza</b>.</p><p>Tiene como objetivo, facilitar la accesibilidad de la población en la ciudad de Zaragoza con la interacción de una serie de capas y herramientas de transporte o enrutamiento. </p><p>Para llevar a cabo el visor, en primer lugar se adquirió la información del<b> Catálogo de datos abiertos del ayuntamiento de Zaragoza</b>, posteriormente se incorporaron dichos datos en una base de datos mediante PostgreSQL. Una vez llevado a cabo dicho proceso, se convirtieron los datos en información mediante su visualización en geoserver, servidor a partir del cual se dió estilo a los diferentes servicios WMS y, finalmente se llevó a cabo la programación del visor así como la incorporación de los servicios WMS y WFS en el mismo.</p>
                             </div>
-                            <div id="funcionamiento" class="tab-pane fade">
+                            <div id="funcionamiento" class="collapse">
                                 <br>
                               <p>A continuación se expone un audio y un video explicando el funcionamiento del visor cartográfico.</p>
                               <br>
@@ -184,11 +207,10 @@
                                 <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').pause()">Pausar explicación</button>
                               </div>
                             </div>
-                            <div id="datos" class="tab-pane fade">
+                            <div id="datos" class="collapse">
                                 <br>
                               <p>En cuanto a la adquisición de los datos geográficos, han sido obtenidos del <b> Catálogo de datos abiertos del ayuntamiento de Zaragoza</b>.</p>
                             </div>
-                          </div>
                 </div>
                   </div>
           <div class="sidebar-pane" id="contacto">
@@ -342,6 +364,13 @@
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
         });
+    var linbus_gen = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
+    layers: "lineas_autobus_gen",//nombre de la capa (ver get capabilities)
+    format: 'image/png',
+    transparent: true,
+    version: '1.1.0',//wms version (ver get capabilities)
+    attribution: "Geoserver WMS."
+    });
     var lintranv = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
         layers: "lineas_tranvia",//nombre de la capa (ver get capabilities)
         format: 'image/png',
@@ -742,7 +771,7 @@
         };
 
         var overlays = {
-            "Marker": linbus,
+            "Líneas autobús": linbus_gen,
             "Roads": aparc_discapacitados,
         };
 
@@ -773,7 +802,7 @@
         };
 
         var overlays2 = {
-            "Marker": linbus,
+            "Líneas autobús": linbus,
             "Roads": aparc_discapacitados,
         };
     
