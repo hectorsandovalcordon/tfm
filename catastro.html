@@ -76,7 +76,7 @@
                   <div class="tab-content">
                     <div id="1" class="tab-pane fade in active">
                     <br>
-                        
+
                     </div>
                     <div id="2" class="tab-pane fade in active">
                     <br>
@@ -97,7 +97,10 @@
                       <div class="tab-content">
                         <div id="estgen" class="tab-pane fade in active">
                         <br>
-                        <p>.</p>
+                         <p>Líneas autobús</p>
+                        <img src=" http://104.199.101.9:8079/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=lineas_autobus_gen&SCALE=1">
+                        <br>
+                        <br>
                         </div>
                         <div id="estadap" class="tab-pane fade">
                             <br>
@@ -762,6 +765,20 @@
     //Incorporación de los GeoJSON tranvía y aparcabicis en formato JS a las capas de supersposición (Overlay)
         var controlCapas = L.control.layers(baseLayers, overlays).addTo(map);
         document.getElementById("2").appendChild(controlCapas.getContainer()
+    );
+
+
+    var baseLayers2 = {
+            "Mapa base Carto": carto,
+        };
+
+        var overlays2 = {
+            "Marker": linbus,
+            "Roads": aparc_discapacitados,
+        };
+    
+        var controlCapas = L.control.layers(baseLayers2, overlays2).addTo(map);
+        document.getElementById("1").appendChild(controlCapas.getContainer()
     );
 //Introducción de la variable controlcapas al elemento del sidebar denominado control-capas
       
