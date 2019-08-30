@@ -69,18 +69,18 @@
               <div class="" id="control-capas">
             <br>
             <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#capasgen">Estilos Generales</a></li>
-                    <li><a data-toggle="tab" href="#capasadap">Estilos Adaptados</a></li>
+                    <li class="active"><a data-toggle="tab" href="#1">Estilos Generales</a></li>
+                    <li><a data-toggle="tab" href="#2">Estilos Adaptados</a></li>
                   </ul>
                   
                   <div class="tab-content">
-                    <div id="capasgengen" class="tab-pane fade in active">
+                    <div id="1" class="tab-pane fade in active">
                     <br>
-                    <p>.</p>
+                        
                     </div>
-                    <div id="capasadap" class="tab-pane fade in active">
+                    <div id="2" class="tab-pane fade in active">
                     <br>
-                    <p>.</p>
+
                     </div>
                 </div>
             </div>
@@ -734,28 +734,15 @@
         }); //Estilos de los postes, en este caso circulares
         var aparc_public=L.layerGroup([aparc_publico,layer_aparc_publico]);
 
-        var baseMaps = {
-                "Mapa base Carto": carto,
+        var baseLayers = {
+            "Mapa base Carto": carto,
         };
-    
-        var Overlays = {
-        "Autobuses": {
-            "Líneas": linbus,
-            "Paradas": paradas_autobus,
-        },
-        "Tranvía": {
-            "Líneas": lintranv,
-            "Paradas": paradas_tranvia2,
-        },
-        "Taxis": {
-            "Paradas": paradas_de_taxi,
-        },
-        "Aparcamientos": {
-            "Públicos": aparc_public,
-            "Parquímetros": parking_priv,
-            "Para discapacitados": discapacitados,
-        },
-            };
+
+        var overlays = {
+            "Marker": linbus,
+            "Roads": aparc_discapacitados,
+        };
+
 
             function addLeyenda(layer){
                     if( layer instanceof L.TileLayer.WMS ){
@@ -773,9 +760,10 @@
             }
 
     //Incorporación de los GeoJSON tranvía y aparcabicis en formato JS a las capas de supersposición (Overlay)
-        var controlCapas = L.Control.styledLayerControl(baseMaps, groupedOverlays).addTo(map);
-        document.getElementById("control-capas").appendChild(controlCapas.getContainer()
-        ); //Introducción de la variable controlcapas al elemento del sidebar denominado control-capas
+        var controlCapas = L.control.layers(baseLayers, overlays).addTo(map);
+        document.getElementById("2").appendChild(controlCapas.getContainer()
+    );
+//Introducción de la variable controlcapas al elemento del sidebar denominado control-capas
       
         var c = new L.Control.Coordinates();
         c.addTo(map);
