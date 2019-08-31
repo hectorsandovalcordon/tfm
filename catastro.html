@@ -364,6 +364,13 @@
         version: '1.1.0',//wms version (ver get capabilities)
         attribution: "Geoserver WMS."
         });
+        var lintranv_gen = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
+        layers: "linea_tranvia_gen",//nombre de la capa (ver get capabilities)
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.0',//wms version (ver get capabilities)
+        attribution: "Geoserver WMS."
+        });
 
         var paradas_bus = L.tileLayer.wms("http://104.199.101.9:8079/geoserver/VISOR2DH/wms", {
         layers: "paradas_bus",//nombre de la capa (ver get capabilities)
@@ -756,6 +763,12 @@
         var overlays = {
             "Líneas autobús": linbus_gen,
             "Paradas autobús": paradas_autobus,
+            "Línea tranvía": intranv_gen,
+            "Paradas tranvía": paradas_tranvia2,
+            "Paradas taxi": paradas_de_taxi,
+            "Parkings públicos": aparc_public,
+            "Parkings para discapacitados": discapacitados,
+            "Parkings privados": parking_priv,
         };
 
 
