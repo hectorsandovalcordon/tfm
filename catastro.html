@@ -68,21 +68,30 @@
               <h1 class="sidebar-header">Capas<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <div class="" id="control-capas">
             <br>
-            <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#1">Capas Generales</a></li>
-                    <li><a data-toggle="tab" href="#2">Capas Adaptadas</a></li>
-                  </ul>
-                  
-                  <div class="tab-content">
-                    <div id="1" class="tab-pane fade in active">
-                    <br>
-
-                    </div>
-                    <div id="2" class="tab-pane fade in active">
-                    <br>
-
+            <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#1" aria-expanded="false" aria-controls="collapseExample">
+                Capas Generales
+                  </button>
+               
+                <div class="collapse" id="1">
+                    <div class="card card-body">
+                    </br>
+    
                     </div>
                 </div>
+            </p>
+                <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#2" aria-expanded="false" aria-controls="collapseExample">
+                Capas Adaptadas
+                </button>
+
+                <div class="collapse" id="2">
+                    <div class="card card-body">
+                    </br>
+    
+                    </div>
+              </div>
+            </p>
             </div>
           </div>
           <div class="sidebar-pane" id="leyenda">
@@ -299,14 +308,6 @@
         map.on('click', function(e) {
             c.setCoordinates(e);
             });
-
-            map.on('layeradd',function(layer){
-                addLeyenda(layer.layer);
-        });
-
-        map.on('layerremove',function(layer){
-                removeLeyenda(layer.layer);
-        });
 
 
     var sidebar = L.control.sidebar('sidebar').addTo(map); 
@@ -771,64 +772,36 @@
         };
 
         var overlays = {
-            "Líneas autobús": linbus_gen,
+            "Líneas autobús": linbus,
             "Roads": aparc_discapacitados,
         };
 
-
-            function addLeyenda(layer){
-                    if( layer instanceof L.TileLayer.WMS ){
-                            var container = document.getElementById("control-leyenda");
-                            var divleyenda = L.DomUtil.create('div','div-image-leyenda', container);
-                            divleyenda.id = '_leaflet_id_'+layer._leaflet_id;
-                            var imgleyenda = L.DomUtil.create('img','image-leyenda', divleyenda);
-                            imgleyenda.src = layer_url+'REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=VISOR2DH:'+ layer_names;
-                    }
-            }
-
-            function removeLeyenda(layer){
-                    var divleyenda = L.DomUtil.get('_leaflet_id_'+layer._leaflet_id);
-                    document.getElementById("control-leyenda").removeChild(divleyenda);
-            }
-
-    //Incorporación de los GeoJSON tranvía y aparcabicis en formato JS a las capas de supersposición (Overlay)
-        var controlCapas = L.control.layers(baseLayers, overlays).addTo(map);
-        document.getElementById("2").appendChild(controlCapas.getContainer()
-    );
-
-
-    var baseLayers2 = {
+        var baseLayers2 = {
             "Mapa base Carto": carto,
         };
 
         var overlays2 = {
-            "Líneas autobús": linbus,
+            "Líneas autobús": linbus_gen,
             "Roads": aparc_discapacitados,
         };
-    
-        var controlCapas = L.control.layers(baseLayers2, overlays2).addTo(map);
+
+    //Incorporación de los GeoJSON tranvía y aparcabicis en formato JS a las capas de supersposición (Overlay)
+        var controlCapas = L.control.layers(baseLayers, overlays, {collapsed: false}).addTo(map);
         document.getElementById("1").appendChild(controlCapas.getContainer()
     );
-//Introducción de la variable controlcapas al elemento del sidebar denominado control-capas
+
+    var controlCapas2 = L.control.layers(baseLayers2, overlays2, {collapsed: false}).addTo(map);
+        document.getElementById("2").appendChild(controlCapas2.getContainer()
+    );    
       
         var c = new L.Control.Coordinates();
         c.addTo(map);
 
-        var osmGeocoder = new L.Control.Geocoder({
-                collapsed: true,
-                position: 'topleft',
-                text: 'Search',
-                title: 'Testing'
-            }).addTo(map);
-            document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-            .className += ' fa fa-search';
-            document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-            .title += 'Buscador callejero';
 
-            var lc = L.control.locate({
-            strings: {
-                title: "Localización actual"
-            }
+        var lc = L.control.locate({
+        strings: {
+            title: "Localización actual"
+        }
         }).addTo(map);
         
 
