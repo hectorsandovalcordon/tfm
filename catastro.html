@@ -198,28 +198,40 @@
             <h1 class="sidebar-header">Información y uso del visor<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
             <br>
             <div id="navbar" class="collapse navbar-collapse">
-                    <button data-toggle="collapse" data-target="#intro">Introducción</button>
-                    <button data-toggle="collapse" data-target="#funcionamiento">Funcionamiento</button>
-                    <button data-toggle="collapse" data-target="#datos">Datos</button>
+                    <p>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#intro" aria-expanded="false" aria-controls="collapseExample">
+                            Introducción
+                              </button>
                           
                             <div id="intro" class="collapse">
                             <br>
                             <p>El siguiente visor cartográfico ha sido realizado por Héctor Sandoval como <b>proyecto final de máster de Tecnologías de la información: Teledetección y Sistemas de Información geográfica de la Universidad de Zaragoza</b>.</p><p>Tiene como objetivo, facilitar la accesibilidad de la población en la ciudad de Zaragoza con la interacción de una serie de capas y herramientas de transporte o enrutamiento. </p><p>Para llevar a cabo el visor, en primer lugar se adquirió la información del<b> Catálogo de datos abiertos del ayuntamiento de Zaragoza</b>, posteriormente se incorporaron dichos datos en una base de datos mediante PostgreSQL. Una vez llevado a cabo dicho proceso, se convirtieron los datos en información mediante su visualización en geoserver, servidor a partir del cual se dió estilo a los diferentes servicios WMS y, finalmente se llevó a cabo la programación del visor así como la incorporación de los servicios WMS y WFS en el mismo.</p>
                             </div>
-                            <div id="funcionamiento" class="collapse">
+                        </p>
+                        <p>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#funci" aria-expanded="false" aria-controls="collapseExample">
+                            Funcionamiento del visor
+                            </button>
+                            <div id="funci" class="collapse">
                                 <br>
                               <p>A continuación se expone un audio y un video explicando el funcionamiento del visor cartográfico.</p>
-                              <br>
-                              <audio id="demo" src="audio/capas.m4a"></audio>
-                              <div>
-                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').play()">Reproducir explicación</button>
-                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').pause()">Pausar explicación</button>
-                              </div>
+                            </br>
+                            <audio id="demo" src="audio/capas.m4a"></audio>
+                            <p>
+                              <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').play()">Reproducir explicación</button>
+                              <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').pause()">Pausar explicación</button>
+                            </p>
                             </div>
-                            <div id="datos" class="collapse">
+                            </p>
+                            <p>
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#dat" aria-expanded="false" aria-controls="collapseExample">
+                            Datos utilizados
+                                      </button>
+                            <div id="dat" class="collapse">
                                 <br>
                               <p>En cuanto a la adquisición de los datos geográficos, han sido obtenidos del <b> Catálogo de datos abiertos del ayuntamiento de Zaragoza</b>.</p>
                             </div>
+                            </p>
                 </div>
                   </div>
           <div class="sidebar-pane" id="contacto">
@@ -315,34 +327,7 @@
       attribution: '&copy; <a>Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a> contributors'
     }).addTo(map);
 
-    function createButton(label, container) {
-            var btn = L.DomUtil.create('button', '', container);
-            btn.setAttribute('type', 'button',);
-            btn.innerHTML = label;
-            return btn;
-        }
-
-        map.on('click', function(e) {
-            var container = L.DomUtil.create('div'),
-                startBtn = createButton('Empezar ruta desde esta ubicación', container),
-                destBtn = createButton('Ir a esta ubicación', container);
-
-                L.DomEvent.on(startBtn, 'click', function() {
-        control.spliceWaypoints(0, 1, e.latlng);
-        map1.closePopup();
-         });
-
-         L.DomEvent.on(destBtn, 'click', function() {
-        control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng);
-        map1.closePopup();
-         });
-
-
-            L.popup()
-                .setContent(container)
-                .setLatLng(e.latlng)
-                .openOn(map);
-        });
+    
 
     var controlRutas = L.Routing.control({
         waypoints: [
@@ -767,30 +752,31 @@
         }); //Estilos de los postes, en este caso circulares
         var aparc_public=L.layerGroup([aparc_publico,layer_aparc_publico]);
 
-        var baseLayers = {
-            "Mapa base Carto": carto,
-        };
-
+        var baselayer = {"Mapa base": carto};
         var overlays = {
-            "Líneas autobús": linbus,
-            "Roads": aparc_discapacitados,
+            "Líneas autobús": linbus_gen,
+            "Paradas autobús": paradas_autobus,
         };
 
-        var baseLayers2 = {
-            "Mapa base Carto": carto,
-        };
 
         var overlays2 = {
-            "Líneas autobús": linbus_gen,
-            "Roads": aparc_discapacitados,
+            "Líneas autobús": linbus,
+            "Paradas autobús": paradas_autobus,
+            "Línea tranvía": lintranv,
+            "Paradas tranvía": paradas_tranvia2,
+            "Paradas taxi": paradas_de_taxi,
+            "Parkings públicos": aparc_public,
+            "Parkings para discapacitados": discapacitados,
+            "Parkings privados": parking_priv,
+
         };
 
     //Incorporación de los GeoJSON tranvía y aparcabicis en formato JS a las capas de supersposición (Overlay)
-        var controlCapas = L.control.layers(baseLayers, overlays, {collapsed: false}).addTo(map);
+        var controlCapas = L.control.layers(baselayer, overlays, {collapsed: false}).addTo(map);
         document.getElementById("1").appendChild(controlCapas.getContainer()
     );
 
-    var controlCapas2 = L.control.layers(baseLayers2, overlays2, {collapsed: false}).addTo(map);
+        var controlCapas2 = L.control.layers(baselayer, overlays2, {collapsed: false}).addTo(map);
         document.getElementById("2").appendChild(controlCapas2.getContainer()
     );    
       
