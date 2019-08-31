@@ -55,7 +55,6 @@
                   <li><a href="#home" role="tab"><i class="fa fa-map"></i></a></li>
                   <li><a href="#leyenda" role="tab"><i class="fa fa-photo"></i></a></li>
                   <li><a href="#rutas" role="tab"><i class="fa fa-road"></i></a></li>
-                  <li><a href="#contacto" role="tab"><i class="fa fa-user"></i></a></li>
                   <li><a href="#info" role="tab"><i class="fa fa-info-circle"></i></a></li>
                 </ul>
   
@@ -177,20 +176,26 @@
           <div class="sidebar-pane" id="rutas">
               <h1 class="sidebar-header">Calculadora de rutas<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <div class="" id="control-rutas">
-              </br>
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#fun">Funcionamiento</a></li>
-                        <li><a data-toggle="tab" href="#itin">Itinerario</a></li>
-                    </ul>
+                <p>  
+                </br>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#funcionam" aria-expanded="false" aria-controls="collapseExample">
+                Funcionamiento
+                </button>
                       
                     <div class="tab-content">
-                      <div id="fun" class="tab-pane fade in active">
+                      <div id="funcionam" class="tab-pane fade in active">
                       <br>
                 <p>En el visor se pueden observar dos popups o marcadores de color azul los cuales se corresponden con las localizaciondes de inicio y final de la ruta. Una vez colocadas donde queramos, abriremos la ventana emergente de Calculadora de rutas (donde nos encontramos ahora mismo) y, en la parte inferior podremos ver el itinerario completo de la ruta más óptima, además de los kilómetros y tiempo aproximado de realización.</p>
                 </div>
-                <div id="itin" class="tab-pane fade">
+                </p>
+                <p>  
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#itinera" aria-expanded="false" aria-controls="collapseExample">
+                Itinerario
+                        </button>
+                <div id="itinera" class="tab-pane fade">
                     <br>
             </div>
+            </p>
               </div>
               </div>
           </div>
@@ -236,19 +241,6 @@
                             </p>
                 </div>
                   </div>
-          <div class="sidebar-pane" id="contacto">
-              <h1 class="sidebar-header">Contacto<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-              <br>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav" text-align=center>
-                  <h4>Correo electrónico</h4><li><a class="dropdown-item" href="mailto:hectorsandovalcordon@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
-                  <br><br><br><h4>LinkedIn</h4><li><a class="dropdown-item" href="https://www.linkedin.com/in/hectorsandovalcordon/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                  <br><br><br><h4>Web personal</h4><li><a class="dropdown-item" href="https://hectorsandovalcordon.github.io/tfm/" target="_blank"><i class="fa fa-copy"></i></a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-          </div>
           <div class="sidebar-pane" id="settings">
               <h1 class="sidebar-header">Ajustes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <br><h4>Transparencia</h4>
@@ -339,7 +331,7 @@
         routeWhileDragging: true,
         geocoder: L.Control.Geocoder.nominatim()
         }).addTo(map);
-        document.getElementById("itin").appendChild(controlRutas.getContainer()
+        document.getElementById("itinera").appendChild(controlRutas.getContainer()
         );
 
         var layer_url = "http://104.199.101.9:8079/geoserver/wms";
