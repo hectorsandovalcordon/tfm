@@ -75,7 +75,7 @@
                 <div class="collapse" id="1">
                     <div class="card card-body">
                     </br>
-    
+
                     </div>
                 </div>
             </p>
@@ -176,7 +176,12 @@
           <div class="sidebar-pane" id="rutas">
               <h1 class="sidebar-header">Calculadora de rutas<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <div class="" id="control-rutas">
-              </br>
+                </br>
+                <audio id="demo2" src="audio/rutas.mp3"></audio>
+                <p>
+                  <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo2').play()">Reproducir explicación</button>
+                  <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo2').pause()">Pausar explicación</button>
+                </p>
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#fun">Funcionamiento</a></li>
                         <li><a data-toggle="tab" href="#itin">Itinerario</a></li>
@@ -185,7 +190,7 @@
                     <div class="tab-content">
                       <div id="fun" class="tab-pane fade in active">
                       <br>
-                <p>En el visor se pueden observar dos popups o marcadores de color azul los cuales se corresponden con las localizaciondes de inicio y final de la ruta. Una vez colocadas donde queramos, abriremos la ventana emergente de Calculadora de rutas (donde nos encontramos ahora mismo) y, en la parte inferior podremos ver el itinerario completo de la ruta más óptima, además de los kilómetros y tiempo aproximado de realización.</p>
+                <p>La calculadora de rutas es una herramienta muy útil, la cual nos servirá para obtener la ruta más óptima de un punto a otro en el mapa.</p><p>La herramienta funciona de la siguiente manera: Como habrán podido observar, hay dos punteros sobre el mapa que aparecen por defecto. Dichos punteros se pueden mover a la localización que se desee y automáticamente la herramienta calcula la ruta.</p><p>Posteriormente, en el itinerario se podrá observar las calles por las que discurre la ruta, así como los kilómetros y tiempo estimado en automóvil.</p>
                 </div>
                 <div id="itin" class="tab-pane fade">
                     <br>
@@ -205,7 +210,7 @@
                                 <br>
                               <p>A continuación se expone un audio y un video explicando el funcionamiento del visor cartográfico.</p>
                             </br>
-                            <audio id="demo" src="audio/capas.m4a"></audio>
+                            <audio id="demo" src="audio/capas.mp3"></audio>
                             <p>
                               <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').play()">Reproducir explicación</button>
                             </p>
@@ -738,7 +743,7 @@
 
 
         var overlays2 = {
-            "Líneas autobús": linbus,
+            "Líneas autobús": linbus, 
             "Paradas autobús": paradas_autobus,
             "Línea tranvía": lintranv,
             "Paradas tranvía": paradas_tranvia2,
