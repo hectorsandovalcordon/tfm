@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css" />
     <link rel="stylesheet" href="css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="css/L.Control.Locate.min.css" />
+    <link rel="stylesheet" href="css/L.Control.Opacity.css" />
 
   </head>
   <!-- Cuerpo de la página web, donde se va a mostrar el contenido al usuario  -->
@@ -66,6 +67,12 @@
           <div class="sidebar-pane" id="home">
               <h1 class="sidebar-header">Capas<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <div class="" id="control-capas">
+                </br>
+                <audio id="demo3" src="audio/capas.mp3"></audio>
+                <p>
+                  <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo3').play()"><i style='font-size:24px' class='fas'>&#xf04b;</i></button>
+                  <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo3').pause()"><i style='font-size:24px' class='fas'>&#xf04c;</i></button>
+                </p>
             <br>
             <p>
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#1" aria-expanded="false" aria-controls="collapseExample">
@@ -96,6 +103,12 @@
           <div class="sidebar-pane" id="leyenda">
               <h1 class="sidebar-header">Leyenda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               <div class="" id="control-leyenda">
+                </br>
+                <audio id="demo4" src="audio/leyenda.mp3"></audio>
+                <p>
+                  <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo4').play()"><i style='font-size:24px' class='fas'>&#xf04b;</i></button>
+                  <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo4').pause()"><i style='font-size:24px' class='fas'>&#xf04c;</i></button>
+                </p>
                 <br>
                 <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#estgen">Leyenda General</a></li>
@@ -190,7 +203,7 @@
                     <div class="tab-content">
                       <div id="fun" class="tab-pane fade in active">
                       <br>
-                <p>La calculadora de rutas es una herramienta muy útil, la cual nos servirá para obtener la ruta más óptima de un punto a otro en el mapa.</p><p>La herramienta funciona de la siguiente manera: Como habrán podido observar, hay dos punteros sobre el mapa que aparecen por defecto. Dichos punteros se pueden mover a la localización que se desee y automáticamente la herramienta calcula la ruta.</p><p>Posteriormente, en el itinerario se podrá observar las calles por las que discurre la ruta, así como los kilómetros y tiempo estimado en automóvil.</p>
+                <p>La calculadora de rutas es una herramienta muy útil, la cual nos servirá para obtener la ruta más óptima de un punto a otro en el mapa.</p><p>La herramienta funciona de la siguiente manera: Como habrán podido observar, hay dos punteros sobre el mapa que aparecen por defecto. Dichos punteros se pueden mover a la localización que se desee y automáticamente la herramienta calcula la ruta.</p><p>Posteriormente, en el itinerario se podrá observar las calles por las que discurre la ruta, así como los kilómetros y tiempo estimado en automóvil.</p></br><p>Para más información consultar: <a href="https://www.liedman.net/leaflet-routing-machine/#about" target='blank'>Leaflet Routing Machine</a></p>
                 </div>
                 <div id="itin" class="tab-pane fade">
                     <br>
@@ -216,7 +229,7 @@
                                   <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo3').pause()"><i style='font-size:24px' class='fas'>&#xf04c;</i></button>
                                 </p>
                             <br>
-                            <p>El siguiente visor cartográfico ha sido realizado por Héctor Sandoval como proyecto final de máster de Tecnologías de la información: Teledetección y Sistemas de Información geográfica de la Universidad de Zaragoza.</p><p>Tiene como objetivo, facilitar la accesibilidad de la población en la ciudad de Zaragoza con la interacción de una serie de capas y herramientas de transporte o enrutamiento. </p><p>Para llevar a cabo el visor, en primer lugar se adquirió la información del Catálogo de datos abiertos del ayuntamiento de Zaragoza, posteriormente se incorporaron dichos datos en una base de datos mediante PostgreSQL. Una vez llevado a cabo dicho proceso, se convirtieron los datos en información mediante su visualización en geoserver, servidor a partir del cual se dió estilo a los diferentes servicios WMS y, finalmente se llevó a cabo la programación del visor así como la incorporación de los servicios WMS y WFS en el mismo.</p>
+                            <p>El siguiente visor cartográfico ha sido realizado por <a href="https://hectorsandovalcordon.github.io/" target='blank'>Héctor Sandoval</a> como proyecto final de <a href="https://estudios.unizar.es/estudio/ver?id=608" target='blank'>máster de Tecnologías de la información: Teledetección y Sistemas de Información geográfica de la Universidad de Zaragoza</a>.</p><p>Tiene como objetivo, facilitar la accesibilidad de la población en la ciudad de Zaragoza con la interacción de una serie de capas y herramientas de transporte o enrutamiento. </p><p>Para llevar a cabo el visor, en primer lugar se adquirió la información del Catálogo de datos abiertos del ayuntamiento de Zaragoza, posteriormente se incorporaron dichos datos en una base de datos mediante PostgreSQL. Una vez llevado a cabo dicho proceso, se convirtieron los datos en información mediante su visualización en geoserver, servidor a partir del cual se dió estilo a los diferentes servicios WMS y, finalmente se llevó a cabo la programación del visor así como la incorporación de los servicios WMS y WFS en el mismo.</p>
                             </div>
                         </p>
                         <p>
@@ -224,33 +237,61 @@
                             Funcionamiento del visor
                             </button>
                             <div id="funci" class="collapse">
+                                </br>
+                                <audio id="demo4" src="audio/funcionamiento.mp3"></audio>
+                                <p>
+                                  <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo4').play()"><i style='font-size:24px' class='fas'>&#xf04b;</i></button>
+
+                                  <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo4').pause()"><i style='font-size:24px' class='fas'>&#xf04c;</i></button>
+                                </p>
                                 <br>
-                              <p>A continuación se expone un audio y un video explicando el funcionamiento del visor cartográfico.</p>
-                            </br>
-                            <audio id="demo" src="audio/capas.mp3"></audio>
-                            <p>
-                              <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').play()">Reproducir explicación</button>
-                            </p>
-                            <p>
-                              <button type="button" class="btn btn-secondary" onclick="document.getElementById('demo').pause()">Pausar explicación</button>
-                            </p>
+                              <p>El funcionamiento del visor cartográfico es bastante intuitivo. En la parte central encontramos el mapa base de Carto y, en la parte izquierda la barra de herramientas con la que el usuario podrá interactuar.</p><p>En el primer apartado se encuentran las capas en formato geojson con las cuales se superpondrán al mapa base y a partir de las cuales el usuario podrá adquirir información en relación con la accesibilidad.</p><p>En el apartado de leyenda, el usuario podrá visualizar las leyendas de las diferentes capas del apartado anterior.</p><p>En el apartado de calculadora de rutas, el usuario podrá calcular la ruta más óptima entre dos punrtos del mapa base con la finalidad de conocer distancia en coche, tiempo de realización, etcétera. Además, puede superponer las capas geojson para conocer cuál es la distancia entre dos parkings para discapacitados u otras entidades.</p><p>En el apartado de información, en el cual nos encontramos, se explica la finalidad, uso y obtención de la información representada en el visor cartográfico.</p><p>En el desplegable de ajustes, se pueden ajustar los niveles de transparencia de algunas de las capas geojson generales y adaptadas.</p><p>Por útimo, a la derecha de la barra de herramientas, encontramos algunos controles de cara a facilitar la interacción del usuario como el zoom o la extensión a pantalla completa.</p>
+                            
                             </div>
                             </p>
                             <p>
                                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#dat" aria-expanded="false" aria-controls="collapseExample">
-                            Datos utilizados
+                            Información empleada
                                       </button>
                             <div id="dat" class="collapse">
                                 <br>
-                              <p>En cuanto a la adquisición de los datos geográficos, han sido obtenidos del Catálogo de datos abiertos del ayuntamiento de Zaragoza.</p>
+                              <p>En cuanto a la adquisición de la información geográfica, han sido obtenida a partir del <a href="https://www.zaragoza.es/sede/portal/datos-abiertos/servicio/catalogo/" target='blank'>Catálogo de datos abiertos del ayuntamiento de Zaragoza</a>.</p><p>Se trata de información geográfica con una temática en relación con la accesbilidad (líneas y paradas de autobús, líneas y paradas de tranvía, paradas de taxi, parkings públicos, privados y para discapacitados).</p><p></p>
                             </div>
                             </p>
                 </div>
                   </div>
           <div class="sidebar-pane" id="settings">
               <h1 class="sidebar-header">Ajustes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-              <br><h4>Transparencia</h4>
-              <input type="range" class="custom-range" min="0" max="5" step="0.5" id="customRange3">
+            </br>
+            <audio id="demo5" src="audio/ajustes.mp3"></audio>
+            <p>
+              <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo5').play()"><i style='font-size:24px' class='fas'>&#xf04b;</i></button>
+
+              <button type="button"  class="btn btn-secondary" onclick="document.getElementById('demo5').pause()"><i style='font-size:24px' class='fas'>&#xf04c;</i></button>
+            </p>
+        </br>
+              <p>
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#trans1" aria-expanded="false" aria-controls="collapseExample">
+                  Capas Generales
+                    </button>
+                 
+                  <div class="collapse" id="trans1">
+                      <div class="card card-body">
+  
+                      </div>
+                  </div>
+              </p>
+                  <p>
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#trans2" aria-expanded="false" aria-controls="collapseExample">
+                  Capas Adaptadas
+                  </button>
+  
+                  <div class="collapse" id="trans2">
+                      <div class="card card-body">
+      
+                      </div>
+                </div>
+              </p>
             </div>
           </div>
         </div>
@@ -285,6 +326,7 @@
     <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
     <script src="js/leaflet-search.js"></script>
     <script src="js/L.Control.Locate.min.js"></script>
+    <script src="js/L.Control.Opacity.js"></script>
     <script type="text/javascript">
         var highlightLayer;
             function highlightFeature(e) {
@@ -784,6 +826,16 @@
 
         };
 
+        var overlays3 = {
+            "Líneas autobús": linbus_gen,
+            "Línea tranvía": lintranv_gen,
+        };
+
+        var overlays4 = {
+            "Líneas autobús": linbus, 
+            "Línea tranvía": lintranv,
+        }
+
     //Incorporación de los GeoJSON tranvía y aparcabicis en formato JS a las capas de supersposición (Overlay)
         var controlCapas = L.control.layers(baselayer, overlays, {collapsed: false}).addTo(map);
         document.getElementById("1").appendChild(controlCapas.getContainer()
@@ -792,7 +844,15 @@
         var controlCapas2 = L.control.layers(baselayer, overlays2, {collapsed: false}).addTo(map);
         document.getElementById("2").appendChild(controlCapas2.getContainer()
     );    
-      
+
+        var opacity1 = L.control.opacity(overlays3).addTo(map);
+        document.getElementById("trans1").appendChild(opacity1.getContainer()
+    );    
+
+        var opacity2 = L.control.opacity(overlays4).addTo(map);
+        document.getElementById("trans2").appendChild(opacity2.getContainer()
+    );    
+
         var c = new L.Control.Coordinates();
         c.addTo(map);
 
