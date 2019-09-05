@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="css/L.Control.Locate.min.css" />
     <link rel="stylesheet" href="css/L.Control.Opacity.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css\leaflet-search.css" />
 
   </head>
   <!-- Cuerpo de la página web, donde se va a mostrar el contenido al usuario  -->
@@ -335,6 +337,9 @@
     <script src="js/leaflet-search.js"></script>
     <script src="js/L.Control.Locate.min.js"></script>
     <script src="js/L.Control.Opacity.js"></script>
+    <script src="js/leaflet.easyPrint.js"></script>
+    <script src="js/bundle.min.js"></script>
+    <script src="js\leaflet-search.js"></script>
     <script type="text/javascript">
         var highlightLayer;
             function highlightFeature(e) {
@@ -1258,6 +1263,14 @@
             title: "Localización actual"
         }
         }).addTo(map);
+
+        L.easyPrint({
+			title: 'Mi botón para imprimir',
+			position: 'topleft',
+			elementsToHide: 'p, h2, .leaflet-control-zoom'
+		}).addTo(map);
+
+
         
 
     </script> 
