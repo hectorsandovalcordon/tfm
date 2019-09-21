@@ -515,7 +515,7 @@
                         <td colspan="2"><strong>Parada</strong><br />' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Tiempo de espera</strong><br />' + (feature.properties['title'] !== null ? Autolinker.link(String(feature.properties['title'])) : '') + '</td>\
+                        <td colspan="2"><strong>Localización y líneas</strong><br />' + (feature.properties['title'] !== null ? Autolinker.link(String(feature.properties['title'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2"><strong>Tiempo de espera</strong><br />' + (feature.properties['link'] !== null ? Autolinker.link(String(feature.properties['link'])) : '') + '</td>\
@@ -582,7 +582,7 @@
                         <td colspan="2"><strong>Parada</strong><br />' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['title'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Tiempo de espera</strong><br />' + (feature.properties['title'] !== null ? Autolinker.link(String(feature.properties['description'])) : '') + '</td>\
+                        <td colspan="2"><strong>Tiempo de espera</strong><br />' + (feature.properties['properties'] !== null ? Autolinker.link(String(feature.properties['properties'])) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
