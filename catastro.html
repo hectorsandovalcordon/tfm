@@ -579,7 +579,7 @@
                         <td colspan="2"><strong>Parada</strong><br />' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['title'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Tiempo de espera</strong><br />' + (feature.properties['properties'] !== null ? Autolinker.link(String(feature.properties['properties'])) : '') + '</td>\
+                        <td colspan="2"><strong>Tiempo de espera</strong><br />' + (feature.properties['url'] !== null ? Autolinker.link(String(feature.properties['url'])) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -643,7 +643,7 @@
                         <td colspan="2"><strong>Parada</strong><br />' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['title'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Tiempo de espera</strong><br />' + (feature.properties['title'] !== null ? Autolinker.link(String(feature.properties['description'])) : '') + '</td>\
+                        <td colspan="2"><strong>Tiempo de espera</strong><br />' + (feature.properties['url'] !== null ? Autolinker.link(String(feature.properties['url'])) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
